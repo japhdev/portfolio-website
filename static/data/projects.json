@@ -1,0 +1,42 @@
+{
+  "projects": [
+    {
+      "category": "mobile",
+      "code_snippet": "import SwiftUI\nimport Firebase\nimport UserNotifications\n\nclass AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {\n    func application(_ application: UIApplication,\n        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {\n        \n        FirebaseApp.configure()\n        \n        let notificationCenter = UNUserNotificationCenter.current()\n        notificationCenter.delegate = self\n        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }\n        application.registerForRemoteNotifications()\n        \n        return true\n    }\n}\n\n@main\nstruct GestorDeHorariosApp: App {\n    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate\n    @StateObject var authVM = AuthenticationViewModel()\n\n    var body: some Scene {\n        WindowGroup {\n            if authVM.user != nil {\n                ContentView(authenticationViewModel: authVM)\n            } else {\n                LaunchScreenView(authenticationViewModel: authVM)\n            }\n        }\n    }\n}\n",
+      "demo_url": "",
+      "description": "I created an iOS app that streamlines workforce scheduling and management. Built with Swift, it uses Firebase for secure email authentication and a powerful database to keep everything organized.\n\nUsers can manage employees, assign work hours, schedule vacations, and generate PDF reports to share with contacts quickly and efficiently. This app boosts productivity and helps businesses stay in control of their team schedules with ease.",
+      "featured": false,
+      "github_url": "https://github.com/japhdev/App-Gestor-de-horarios.git",
+      "id": 1761547431448,
+      "image": "images/projects/a0029d15f0524279be6ed5d332b533ab_Diseno_sin_titulo_8.jpg",
+      "technologies": [
+        "Swift",
+        "SwiftUI",
+        "Firebase Authentication",
+        "Database integration",
+        "PDF generation and sharing"
+      ],
+      "title": "Shift Manager"
+    },
+    {
+      "id": 1761632638162,
+      "title": "Market Basket Analysis - Supermarket",
+      "description": "This project performed a market basket analysis on an extensive supermarket database with over 4.9 million records. The process included:\n\nData extraction and preparation from SQLite\n\nTransaction transformation into one-hot encoding format\n\nCalculation of association metrics (confidence and lift) between products\n\nGeneration of association rules with significance thresholds\n\nData enrichment with department and section information\n\nResults export for dashboard and analysis\n\nCalculated Metrics:\n\nConfidence: Measures the probability of purchasing product B given that product A was purchased\n\nLift: Indicates whether the relationship between products is greater than expected by chance (lift > 1 = positive association)",
+      "technologies": [
+        "Python",
+        "pandas",
+        "SQLite",
+        "Power BI",
+        "ETL",
+        "Data Visualization",
+        "Google Colab"
+      ],
+      "code_snippet": "from itertools import combinations\n\n# Define a threshold for minimum confidence\nconfidence_threshold = 0.05\nassociations = []\n\n# Generate product combinations and calculate confidence and lift\nfor antecedent, consequent in combinations(df_transactions.columns, 2):\n    # Support of the antecedent\n    support_a = df_transactions[antecedent].mean()\n    \n    # Calculate confidence\n    conf = confidence(antecedent, consequent)\n    if conf > confidence_threshold:\n        associations.append({\n            'antecedent': antecedent,\n            'consequent': consequent,\n            'support_a': round(support_a * 100, 1),\n            'confidence': round(conf * 100, 1),\n            'lift': round(lift(antecedent, consequent), 1)\n        })\n\n# Convert associations to a DataFrame\ndf_associations = pd.DataFrame(associations)\ndf_associations.sort_values(by='lift', ascending=False, inplace=True)",
+      "demo_url": "",
+      "github_url": "https://github.com/japhdev/MarketBasketAnalusis.git",
+      "category": "python",
+      "featured": false,
+      "image": "images/projects/c2f48c0c318f4c13821359a31bca0da5_Diseno_sin_titulo_9.jpg"
+    }
+  ]
+}

@@ -17,8 +17,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/sections/certificates.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/sections/contact.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/sections/hero.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/sections/projects.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sections/desing.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/sections/technologies.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sections/projects.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sections/admin_panel.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sections/projects_grid.css') }}">
     
     <!-- Iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -43,7 +46,7 @@
                 <!-- Menú de navegación principal -->
                 <ul class="nav-menu">
                     <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                    <li class="nav-item"><a href="#desing" class="nav-link">desing</a></li>
                     <li class="nav-item"><a href="#certificates" class="nav-link">Certificates</a></li>
                     <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -207,12 +210,38 @@
                 </div>
             </div>
         </section>
+<!-- Sección de Proyectos -->
+<section id="projects" class="section">
+    <h2 class="section-title">My Projects</h2>
+    
+    <!-- Filtros -->
+    <div class="projects-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="mobile">Mobile</button>
+        <button class="filter-btn" data-filter="python">Python</button>
+    </div>
+    
+    <!-- Grid Masonry -->
+    <div class="projects-grid" id="projectsGrid">
+        <!-- Se llena automáticamente con JavaScript -->
+    </div>
+</section>
 
+<!-- Modal para detalles del proyecto -->
+<div id="project-modal" class="modal">
+    <div class="modal-content">
+        <button class="close-modal">&times;</button>
+        <div id="project-details">
+            <!-- Contenido dinámico -->
+        </div>
+    </div>
+</div>
         <!-- Sección de Proyectos/UI/UX -->
-        <section id="projects" class="section">
+        <section id="desing" class="section">
             <h2 class="section-title">UI/UX</h2>
-            <div class="projects-wrapper">
-                <div class="projects-content">
+            <div class="desing-wrapper">
+                <div class="desing-content">
                     <div class="figma-branding">
                         <svg viewBox="0 0 38 57" class="figma-logo-minimal">
                             <path fill="#0acf83" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z"/>
@@ -274,45 +303,57 @@
             </div>
         </section>
 
-        <!-- Sección de Certificados -->
-        <section id="certificates" class="section">
-            <h2 class="section-title">My Certificates</h2>
-            
-            <!-- Carrusel de certificados -->
-            <div class="certificates-container">
-                <div class="certificates-scroller">
-                    <div class="cert-slide">
-                        <img src="{{ url_for('static', filename='images/certificado1.jpg') }}" 
-                            alt="Certificate 1" 
-                            loading="lazy">
-                    </div>
-                    <div class="cert-slide">
-                        <img src="{{ url_for('static', filename='images/certificado2.jpg') }}" 
-                            alt="Certificate 2" 
-                            loading="lazy">
-                    </div>
-                    <div class="cert-slide">
-                        <img src="{{ url_for('static', filename='images/certificado3.jpg') }}" 
-                            alt="Certificate 3" 
-                            loading="lazy">
-                    </div>
-                    <div class="cert-slide">
-                        <img src="{{ url_for('static', filename='images/certificado4.jpg') }}" 
-                            alt="Certificate 4" 
-                            loading="lazy">
-                    </div>
-                    <div class="cert-slide">
-                        <img src="{{ url_for('static', filename='images/certificado5.jpg') }}" 
-                            alt="Certificate 5" 
-                            loading="lazy">
-                    </div>
-                </div>
-                
-                <!-- Controles del carrusel -->
-                <button class="scroll-btn prev" aria-label="Previous">❮</button>
-                <button class="scroll-btn next" aria-label="Next">❯</button>
+<!-- Sección de Certificados -->
+<section id="certificates" class="section">
+    <h2 class="section-title">My Certificates</h2>
+    
+    <!-- Carrusel de certificados -->
+    <div class="certificates-container">
+        <div class="certificates-scroller">
+            <div class="cert-slide">
+                <img src="{{ url_for('static', filename='images/certificado1.jpg') }}" 
+                    alt="Certificate 1" 
+                    loading="lazy"
+                    class="cert-clickable">
             </div>
-        </section>
+            <div class="cert-slide">
+                <img src="{{ url_for('static', filename='images/certificado2.jpg') }}" 
+                    alt="Certificate 2" 
+                    loading="lazy"
+                    class="cert-clickable">
+            </div>
+            <div class="cert-slide">
+                <img src="{{ url_for('static', filename='images/certificado3.jpg') }}" 
+                    alt="Certificate 3" 
+                    loading="lazy"
+                    class="cert-clickable">
+            </div>
+            <div class="cert-slide">
+                <img src="{{ url_for('static', filename='images/certificado4.jpg') }}" 
+                    alt="Certificate 4" 
+                    loading="lazy"
+                    class="cert-clickable">
+            </div>
+            <div class="cert-slide">
+                <img src="{{ url_for('static', filename='images/certificado5.jpg') }}" 
+                    alt="Certificate 5" 
+                    loading="lazy"
+                    class="cert-clickable">
+            </div>
+        </div>
+        
+        <!-- Controles del carrusel -->
+        <button class="scroll-btn prev" aria-label="Previous">❮</button>
+        <button class="scroll-btn next" aria-label="Next">❯</button>
+    </div>
+</section>
+
+<!-- Modal/Lightbox - FUERA de la sección -->
+<div id="certificate-modal" class="modal">
+    <button class="close-modal" aria-label="Close certificate view">&times;</button>
+    <img class="modal-content" id="modal-image" alt="">
+    <div class="modal-caption" id="modal-caption"></div>
+</div>
 
         <!-- Sección de Contacto -->
         <section id="contact" class="section">
@@ -379,5 +420,67 @@
     <script src="{{ url_for('static', filename='js/contact.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <script src="{{ url_for('static', filename='js/effects.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+
+
+    <!-- Panel de Administración (oculto inicialmente) -->
+<div id="admin-panel" class="admin-panel" style="display: none;">
+    <div class="admin-header">
+        <h3>📁 Admin Projects</h3>
+        <button class="close-admin">&times;</button>
+    </div>
+    
+    <form id="project-form" class="admin-form">
+        <div class="form-group">
+            <label>Title:</label>
+            <input type="text" name="title" required>
+        </div>
+        
+        <div class="form-group">
+            <label>Description:</label>
+            <textarea name="description" required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label>Technologies (separate by commas):</label>
+            <input type="text" name="technologies" placeholder="Python, Flask, JavaScript" required>
+        </div>
+        
+        <div class="form-group">
+            <label>Code Snippet:</label>
+            <textarea name="code_snippet" placeholder="def example():\n    return 'Hello World'"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label>Demo URL:</label>
+            <input type="url" name="demo_url">
+        </div>
+        
+        <div class="form-group">
+            <label>GitHub URL:</label>
+            <input type="url" name="github_url">
+        </div>
+        
+        <div class="form-group">
+            <label>Category:</label>
+            <select name="category" required>
+                <option value="web">Web</option>
+                <option value="mobile">Mobile</option>
+                <option value="python">Python</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label>Project Image:</label>
+            <input type="file" name="project_image" accept="image/*" required>
+        </div>
+        
+        <button type="submit" class="submit-btn">➕ Add Project</button>
+    </form>
+</div>
+
+<!-- Botón flotante para abrir admin -->
+<button id="admin-toggle" class="admin-toggle-btn" title="Admin Panel">⚙️</button>
 </body>
 </html>

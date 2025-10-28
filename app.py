@@ -7,6 +7,8 @@ import os
 import traceback
 import re
 from dotenv import load_dotenv
+import uuid
+from werkzeug.utils import secure_filename
 
 # Load environment variables
 load_dotenv()
@@ -35,6 +37,18 @@ mail = Mail(app)
 
 # Database configuration
 DATABASE = 'messages.db'
+
+# Configuration for file uploads
+UPLOAD_FOLDER = 'static/images/projects'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
+
+# Create upload folder if it doesn't exist
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -175,6 +189,93 @@ This message was sent automatically."""
             'success': False,
             'message': 'An error occurred while processing your message. Please try again later.'
         }), 500
+
+# =============================================
+# PROJECTS ADMIN ROUTES
+# =============================================
+
+@app.route('/admin/save-projects', methods=['POST'])
+def save_projects():
+    """Save projects data to JSON file"""
+    try:
+        data = request.json
+        
+        # Validate data structure
+        if 'projects' not in data:
+            return jsonify({'success': False, 'error': 'Invalid data structure'}), 400
+        
+        # Save to JSON file
+        with open('static/data/projects.json', 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        
+        print("✅ Projects saved successfully")
+        return jsonify({'success': True, 'message': 'Projects saved successfully'})
+    
+    except Exception as e:
+        print(f"❌ Error saving projects: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+@app.route('/admin/upload-image', methods=['POST'])
+def upload_image():
+    """Handle project image uploads"""
+    try:
+        if 'image' not in request.files:
+            return jsonify({'success': False, 'error': 'No image file'}), 400
+        
+        file = request.files['image']
+        if file.filename == '':
+            return jsonify({'success': False, 'error': 'No selected file'}), 400
+        
+        if file and allowed_file(file.filename):
+            # Generate unique filename
+            filename = secure_filename(file.filename)
+            unique_filename = f"{uuid.uuid4().hex}_{filename}"
+            filepath = os.path.join(UPLOAD_FOLDER, unique_filename)
+            
+            # Save file
+            file.save(filepath)
+            
+            # Return relative path for web access
+            web_path = f"images/projects/{unique_filename}"
+            return jsonify({'success': True, 'image_path': web_path})
+        else:
+            return jsonify({'success': False, 'error': 'File type not allowed'}), 400
+            
+    except Exception as e:
+        print(f"❌ Error uploading image: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+@app.route('/api/projects')
+def get_projects():
+    """API endpoint to get all projects"""
+    try:
+        with open('static/data/projects.json', 'r', encoding='utf-8') as f:
+            projects_data = json.load(f)
+        return jsonify(projects_data)
+    except FileNotFoundError:
+        # Return empty projects if file doesn't exist
+        return jsonify({'projects': []})
+    except Exception as e:
+        print(f"❌ Error loading projects: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+@app.route('/admin/check-auth', methods=['POST'])
+def check_auth():
+    """Simple authentication check"""
+    try:
+        data = request.json
+        password = data.get('password', '')
+        
+        # Change this password to whatever you want
+        correct_password = os.getenv('ADMIN_PASSWORD')
+        
+        if password == correct_password:
+            return jsonify({'success': True, 'authenticated': True})
+        else:
+            return jsonify({'success': True, 'authenticated': False})
+            
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 if __name__ == "__main__":
     init_db()
