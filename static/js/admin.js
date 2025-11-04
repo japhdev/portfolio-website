@@ -2,6 +2,8 @@
 class ProjectAdmin {
     constructor() {
         this.init();
+        this.setupExpandableCode();
+        this.setupCodeModals();
     }
     
     init() {
@@ -11,20 +13,29 @@ class ProjectAdmin {
     
     setupEventListeners() {
         // Botón toggle admin
-        document.getElementById('admin-toggle').addEventListener('click', () => {
-            this.authenticate();
-        });
+        const adminToggle = document.getElementById('admin-toggle');
+        if (adminToggle) {
+            adminToggle.addEventListener('click', () => {
+                this.authenticate();
+            });
+        }
         
         // Cerrar panel
-        document.querySelector('.close-admin').addEventListener('click', () => {
-            this.hideAdminPanel();
-        });
+        const closeAdmin = document.querySelector('.close-admin');
+        if (closeAdmin) {
+            closeAdmin.addEventListener('click', () => {
+                this.hideAdminPanel();
+            });
+        }
         
         // Enviar formulario
-        document.getElementById('project-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            this.addProject();
-        });
+        const projectForm = document.getElementById('project-form');
+        if (projectForm) {
+            projectForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.addProject();
+            });
+        }
     }
     
     async authenticate() {
@@ -55,12 +66,18 @@ class ProjectAdmin {
     }
     
     showAdminPanel() {
-        document.getElementById('admin-panel').style.display = 'block';
+        const adminPanel = document.getElementById('admin-panel');
+        if (adminPanel) {
+            adminPanel.style.display = 'block';
+        }
     }
     
     hideAdminPanel() {
-        document.getElementById('admin-panel').style.display = 'none';
-        document.getElementById('project-form').reset();
+        const adminPanel = document.getElementById('admin-panel');
+        const projectForm = document.getElementById('project-form');
+        
+        if (adminPanel) adminPanel.style.display = 'none';
+        if (projectForm) projectForm.reset();
     }
     
     async addProject() {
@@ -152,73 +169,204 @@ class ProjectAdmin {
             console.error('Error loading projects:', error);
         }
     }
-    renderProjects(projects) {
-    const grid = document.getElementById('projectsGrid');
-    if (!grid) {
-        console.error('Projects grid element not found');
-        return;
-    }
-    
-    // Limpiar grid
-    grid.innerHTML = '';
-    
-    // Renderizar cada proyecto
-    projects.forEach((project, index) => {
-        const projectCard = this.createProjectCard(project, index);
-        grid.appendChild(projectCard);
-    });
-    
-    console.log(`✅ Rendered ${projects.length} projects`);
-}
 
-createProjectCard(project, index) {
-    const card = document.createElement('div');
-    card.className = 'project-card';
-    card.style.animationDelay = `${index * 0.1}s`;
-    
-    card.innerHTML = `
-        <div class="project-card-inner">
-            <div class="project-image">
-                <img src="/static/${project.image}" alt="${project.title}" loading="lazy">
-                <div class="project-overlay">
-                    <div class="project-actions">
-                        ${project.demo_url ? `<a href="${project.demo_url}" target="_blank" class="project-btn demo-btn">👀 Demo</a>` : ''}
-                        ${project.github_url ? `<a href="${project.github_url}" target="_blank" class="project-btn code-btn">💻 Code</a>` : ''}
+    renderProjects(projects) {
+        const grid = document.getElementById('projectsGrid');
+        if (!grid) {
+            console.error('Projects grid element not found');
+            return;
+        }
+        
+        // Limpiar grid
+        grid.innerHTML = '';
+        
+        // Renderizar cada proyecto
+        projects.forEach((project, index) => {
+            const projectCard = this.createProjectCard(project, index);
+            grid.appendChild(projectCard);
+        });
+        
+        console.log(`✅ Rendered ${projects.length} projects`);
+    }
+
+    createProjectCard(project, index) {
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        card.style.animationDelay = `${index * 0.1}s`;
+        
+        const randomSize = ['short', 'medium', 'tall'][Math.floor(Math.random() * 3)];
+        card.classList.add(randomSize);
+        
+        card.innerHTML = `
+            <div class="project-card-inner">
+                <div class="project-image ${randomSize}">
+                    <img src="/static/${project.image}" alt="${project.title}" loading="lazy">
+                    <div class="project-overlay">
+                        <div class="project-actions">
+                            ${project.demo_url ? `<a href="${project.demo_url}" target="_blank" class="project-btn demo-btn">👀 Demo</a>` : ''}
+                            ${project.github_url ? `<a href="${project.github_url}" target="_blank" class="project-btn code-btn">💻 Code</a>` : ''}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-content">
+                    <h3 class="project-title">${project.title}</h3>
+                    
+                    <div class="project-main-content">
+                        <div class="project-description-column">
+                            <p class="project-description">${project.description}</p>
+                        </div>
+                        ${project.code_snippet ? `
+                        <div class="project-code-column">
+                            <div class="code-snippet">
+                                <button class="close-expand" title="Close expanded code">×</button>
+                                <span class="expand-indicator">Click to expand</span>
+                                <pre><code>${this.escapeHtml(project.code_snippet)}</code></pre>
+                            </div>
+                        </div>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="project-footer">
+                        <div class="project-technologies">
+                            ${project.technologies.map(tech => 
+                                `<span class="tech-tag">${tech.trim()}</span>`
+                            ).join('')}
+                        </div>
+                        
+                        <div class="project-category">
+                            <span class="category-badge">${project.category}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="project-content">
-                <h3 class="project-title">${project.title}</h3>
-                <p class="project-description">${project.description}</p>
-                
-                ${project.code_snippet ? `
-                <div class="code-snippet">
-                    <pre><code>${this.escapeHtml(project.code_snippet)}</code></pre>
-                </div>
-                ` : ''}
-                
-                <div class="project-technologies">
-                    ${project.technologies.map(tech => 
-                        `<span class="tech-tag">${tech.trim()}</span>`
-                    ).join('')}
-                </div>
-                
-                <div class="project-category">
-                    <span class="category-badge">${project.category}</span>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    return card;
-}
+        `;
+        
+        return card;
+    }
 
-escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-}
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    setupCodeModals() {
+        // Delegación de eventos para el botón expandir código
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('expand-code-btn')) {
+                const codeSnippet = e.target.closest('.code-snippet');
+                const codeContent = codeSnippet?.querySelector('pre')?.textContent;
+                
+                if (codeContent) {
+                    this.showExpandedCode(codeContent);
+                }
+            }
+            
+            // Cerrar modal
+            if (e.target.classList.contains('close-code-modal') || 
+                e.target.classList.contains('code-modal')) {
+                this.hideExpandedCode();
+            }
+        });
+        
+        // Tecla ESC para cerrar
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.hideExpandedCode();
+            }
+        });
+    }
+
+    showExpandedCode(codeContent) {
+        const modal = document.createElement('div');
+        modal.className = 'code-modal';
+        modal.style.display = 'flex';
+        modal.innerHTML = `
+            <div class="code-modal-content">
+                <button class="close-code-modal">&times;</button>
+                <pre><code>${this.escapeHtml(codeContent)}</code></pre>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        document.body.style.overflow = 'hidden';
+    }
+
+    hideExpandedCode() {
+        const modal = document.querySelector('.code-modal');
+        if (modal) {
+            modal.remove();
+            document.body.style.overflow = '';
+        }
+    }
+
+    setupExpandableCode() {
+        // ELIMINAR la creación del overlay global - ya no se necesita
+        // porque ahora el overlay está integrado en el CSS del código expandido
+
+        // Delegación de eventos para manejar clicks en code snippets
+        document.addEventListener('click', (e) => {
+            const codeSnippet = e.target.closest('.code-snippet');
+            const closeBtn = e.target.closest('.close-expand');
+            const expandIndicator = e.target.closest('.expand-indicator');
+            
+            // Expandir código al hacer click en el snippet o en el indicador
+            if ((codeSnippet && !codeSnippet.classList.contains('expanded') && !closeBtn) || 
+                expandIndicator) {
+                this.expandCode(codeSnippet);
+            }
+            
+            // Cerrar código al hacer click en el botón de cerrar
+            if (closeBtn && closeBtn.closest('.code-snippet')) {
+                this.collapseAllCode();
+            }
+            
+            // Cerrar código al hacer click en el overlay (pseudo-elemento ::before)
+            // Esto se maneja automáticamente por el CSS ya que el overlay es parte del code-snippet
+        });
+        
+        // Cerrar con ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.collapseAllCode();
+            }
+        });
+    }
+
+    expandCode(codeSnippet) {
+        // Cerrar otros snippets primero
+        this.collapseAllCode();
+        
+        // Aplicar clase expanded - el overlay se maneja automáticamente en CSS
+        codeSnippet.classList.add('expanded');
+        
+        // Forzar reflow para asegurar la animación
+        void codeSnippet.offsetWidth;
+        
+        // Prevenir scroll del body
+        document.body.style.overflow = 'hidden';
+        
+        console.log('✅ Code snippet expanded with integrated overlay');
+    }
+
+    collapseCode(codeSnippet) {
+        if (codeSnippet) {
+            codeSnippet.classList.remove('expanded');
+        }
+    }
+
+    collapseAllCode() {
+        // Colapsar todos los snippets
+        document.querySelectorAll('.code-snippet.expanded').forEach(snippet => {
+            this.collapseCode(snippet);
+        });
+        
+        // Restaurar scroll del body
+        document.body.style.overflow = '';
+        
+        console.log('✅ All code snippets collapsed');
+    }
 }
 
 // Inicializar cuando el DOM esté listo
