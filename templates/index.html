@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- 
+<!-- 
     ============================================
     PORTFOLIO JAPH - Main HTML Template
     ============================================
-    @version: 1.1.0
+    @version: 1.1.1
     @author: JAPH
-    @last-updated: 2024-01-15
+    @last-updated: 2025-11-05
     ============================================
 -->
 
@@ -25,14 +25,15 @@
     <meta name="description" content="Portfolio of JAPH - Software Development Engineer">
     <meta name="keywords" content="software developer, mobile app developer, UI/UX design">
     <meta name="author" content="JAPH">
-    
+
     <!-- Open Graph para redes sociales -->
     <meta property="og:title" content="JAPH - Software Development Engineer">
-    <meta property="og:description" content="Portfolio showcasing software development projects and skills in mobile and web technologies">
+    <meta property="og:description"
+        content="Portfolio showcasing software development projects and skills in mobile and web technologies">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mydomain.com"> <!-- Replace with my actual URL -->
     <meta property="og:site_name" content="JAPH Portfolio">
-    
+
     <!-- Favicon -->
     <link rel="icon" href="{{ url_for('static', filename='images/darklogo.jpg') }}">
 
@@ -106,8 +107,12 @@
                     <span class="close-modal">&times;</span>
                     <h3>My Curriculum Vitae</h3>
                     <div class="pdf-container">
-                        <iframe src="{{ url_for('static', filename='docs/cv.pdf') }}#toolbar=0" width="100%"
-                            height="500px"></iframe>
+                        <iframe loading="lazy" src="{{ url_for('static', filename='docs/cv.pdf') }}#toolbar=0"
+                            width="100%" height="500px"
+                            title="PDF Document - Josue Alan Pablo Hernandez Curriculum Vitae" class="pdf-iframe"
+                            allowfullscreen>
+
+                        </iframe>
                     </div>
                     <!-- Modal actions CV: Download and Close -->
                     <div class="modal-actions">
@@ -216,12 +221,12 @@
                     <!--GitHub label - GitHub username display -->
                     <div class="image-label bid-label">
                         <div class="label-title">GitHub</div>
-                        <div class="label-value">#jahpdev</div>
+                        <div class="label-value">#japhdev</div>
                     </div>
 
                     <!-- User info label - Full name and user name-->
                     <div class="image-label user-label">
-                        <div class="label-name">Josué Alan Pablo Hernández</div>
+                        <div class="label-name">Josue Alan Pablo Hernández</div>
                         <div class="label-username">@JAPH</div>
                     </div>
                 </div>
@@ -321,10 +326,13 @@
 
                     <!-- Embedded Figma prototype with interactive hot spots -->
                     <div class="figma-container">
+                        <!-- Figma Embed Iframe -->
                         <div class="figma-embed-wrapper">
-                            <iframe style="border: none;" width="100%" height="600"
+                            <iframe class="figma-iframe" width="100%" height="600"
+                                title="Figma Design Prototype - Interactive UI/UX Design"
                                 src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/file/57KX61DKyqlZs2sWsyrdkg/Untitled?node-id=0%3A1"
-                                allowfullscreen></iframe>
+                                allowfullscreen>
+                            </iframe>
                         </div>
 
                         <!-- Interactive hot spots for feature explanations -->
@@ -488,48 +496,51 @@
     <script src="{{ url_for('static', filename='js/cv-modal.js') }}"></script>
     <script src="{{ url_for('static', filename='js/certificates.js') }}"></script>
 
-
     <!-- Panel for Admin Projects -->
-    <div id="admin-panel" class="admin-panel" style="display: none;">
+    <div id="admin-panel" class="admin-panel hidden">
         <div class="admin-header">
             <h3>Admin Projects</h3>
-            <button class="close-admin">&times;</button>
+            <button class="close-admin" aria-label="Close admin panel">&times;</button>
         </div>
 
         <form id="project-form" class="admin-form">
             <div class="form-group">
-                <label>Title:</label>
-                <input type="text" name="title" required>
+                <label for="admin-title">Title:</label>
+                <input type="text" id="admin-title" name="title" required placeholder="Enter project title">
             </div>
 
             <div class="form-group">
-                <label>Description:</label>
-                <textarea name="description" required></textarea>
+                <label for="admin-description">Description:</label>
+                <textarea id="admin-description" name="description" required
+                    placeholder="Describe your project features and purpose..."></textarea>
             </div>
 
             <div class="form-group">
-                <label>Technologies (separate by commas):</label>
-                <input type="text" name="technologies" placeholder="Python, Flask, JavaScript" required>
+                <label for="admin-technologies">Technologies (separate by commas):</label>
+                <input type="text" id="admin-technologies" name="technologies" placeholder="Python, Flask, JavaScript"
+                    required>
             </div>
 
             <div class="form-group">
-                <label>Code Snippet:</label>
-                <textarea name="code_snippet" placeholder="def example():\n    return 'Hello World'"></textarea>
+                <label for="admin-code">Code Snippet:</label>
+                <textarea id="admin-code" name="code_snippet"
+                    placeholder="def example():\n    return 'Hello World'"></textarea>
             </div>
 
             <div class="form-group">
-                <label>Demo URL:</label>
-                <input type="url" name="demo_url">
+                <label for="admin-demo">Demo URL:</label>
+                <input type="url" id="admin-demo" name="demo_url" placeholder="https://your-project-demo.com">
             </div>
 
             <div class="form-group">
-                <label>GitHub URL:</label>
-                <input type="url" name="github_url">
+                <label for="admin-github">GitHub URL:</label>
+                <input type="url" id="admin-github" name="github_url"
+                    placeholder="https://github.com/username/repository">
             </div>
 
             <div class="form-group">
-                <label>Category:</label>
-                <select name="category" required>
+                <label for="admin-category">Category:</label>
+                <select id="admin-category" name="category" required>
                     <option value="web">Web</option>
                     <option value="mobile">Mobile</option>
                     <option value="python">Python</option>
@@ -538,8 +549,8 @@
             </div>
 
             <div class="form-group">
-                <label>Project Image:</label>
-                <input type="file" name="project_image" accept="image/*" required>
+                <label for="admin-image">Project Image:</label>
+                <input type="file" id="admin-image" name="project_image" accept="image/*" required>
             </div>
 
             <button type="submit" class="submit-btn">➕ Add Project</button>
