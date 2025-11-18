@@ -1,0 +1,359 @@
+/* ==========================================================================
+NAVBAR STYLES
+   ========================================================================== */
+
+/**
+ * CSS Custom Properties (Variables)
+ * These define reusable values throughout the navbar component
+ */
+:root {
+    --text-light: #f8f6f6;
+    --text-hover: rgba(77, 77, 77, 0.737);
+    --bg-navbar: rgba(0, 0, 0, 0);
+    --border-light: rgba(72, 10, 229, 0.092);
+    --navbar-height: 80px;
+    --navbar-height-mobile: 60px;
+    --transition-standard: all 0.3s ease;
+    --blur-intensity: 20px;
+}
+
+/* ==========================================================================
+NAVBAR CONTAINER
+   ========================================================================== */
+
+/**
+ * Main navigation container
+ * Fixed positioning keeps it at the top of viewport
+ * Backdrop filter creates glass morphism effect
+ */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-navbar);
+    -webkit-backdrop-filter: blur(var(--blur-intensity));
+    backdrop-filter: blur(var(--blur-intensity));
+    border-bottom: 1px solid var(--border-light);
+    height: var(--navbar-height);
+}
+
+/**
+ * Flex container for navbar content
+ * Centers content with max-width constraint
+ */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 100%;
+}
+
+/* ==========================================================================
+   NAVIGATION MENU
+   ========================================================================== */
+
+/**
+ * Primary navigation menu
+ * Flex layout for horizontal alignment on desktop
+ */
+.nav-menu {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+/**
+ * Navigation link styles
+ * Uppercase text with letter spacing for premium feel
+ * Smooth transitions for hover effects
+ */
+.nav-item a {
+    color: var(--text-light);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: var(--transition-standard);
+}
+
+/**
+ * Animated underline effect for navigation links
+ */
+.nav-item a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--text-hover);
+    transition: var(--transition-standard);
+}
+
+.nav-item a:hover::after {
+    width: 100%;
+}
+
+/**
+ * Hover state for navigation links
+ * Color change on interaction
+ */
+.nav-item a:hover {
+    color: var(--text-hover);
+}
+
+/**
+ * Active state for current page
+ */
+.nav-item a.active {
+    color: var(--text-hover);
+}
+
+.nav-item a.active::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   LOGO STYLES
+   ========================================================================== */
+
+/**
+ * Logo container and link styles
+ */
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-light);
+    transition: var(--transition-standard);
+}
+
+/**
+ * Logo icon/image styles
+ * Smooth scale transition on hover
+ */
+.logo-icon {
+    height: 40px;
+    width: auto;
+    transition: var(--transition-standard);
+}
+
+/**
+ * Logo hover effect
+ * Subtle scale animation
+ */
+.logo:hover .logo-icon {
+    transform: scale(1.08);
+}
+
+.logo:hover {
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   HAMBURGER MENU
+   ========================================================================== */
+
+/**
+ * Hamburger menu button (hidden by default on desktop)
+ * Used for mobile navigation toggle
+ */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+    position: relative;
+    border-radius: 4px;
+    transition: var(--transition-standard);
+}
+
+/**
+ * Accessibility: Focus state for hamburger button
+ */
+.hamburger:focus {
+    outline: 2px solid var(--text-light);
+    outline-offset: 2px;
+}
+
+.hamburger:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/**
+ * Individual lines of hamburger icon
+ * Animated for menu state transitions
+ */
+.hamburger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-light);
+    margin: 4px 0;
+    transition: var(--transition-standard);
+    transform-origin: center;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE STYLES
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+
+    /* Mobile navbar height */
+    nav {
+        height: var(--navbar-height-mobile);
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+    }
+
+    /* Adjust container padding for mobile */
+    .nav-container {
+        padding: 0 1rem;
+    }
+
+    /* Show hamburger button on mobile */
+    .hamburger {
+        display: block;
+    }
+
+    /**
+     * Hamburger animation when menu is expanded
+     * Transforms lines into X icon
+     */
+    .hamburger[aria-expanded="true"] .hamburger-line:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+    }
+
+    .hamburger[aria-expanded="true"] .hamburger-line:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    .hamburger[aria-expanded="true"] .hamburger-line:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+    }
+
+    /**
+     * Mobile navigation menu
+     * Full-screen overlay that slides in from left
+     */
+    .nav-menu {
+        position: fixed;
+        top: var(--navbar-height-mobile);
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - var(--navbar-height-mobile));
+        background-color: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 3rem;
+        gap: 2rem;
+        transition: left 0.4s ease;
+    }
+
+    /**
+     * Active state for mobile menu
+     * Slides menu into view
+     */
+    .nav-menu.active {
+        left: 0;
+    }
+
+    /* Adjust logo size for mobile */
+    .logo-icon {
+        height: 32px;
+    }
+
+    /**
+     * Mobile navigation links
+     * Larger touch targets and centered text
+     */
+    .nav-item a {
+        padding: 0.8rem 1.5rem;
+        font-size: 1.1rem;
+        display: block;
+        width: 100%;
+        text-align: center;
+        border-radius: 6px;
+        transition: var(--transition-standard);
+    }
+
+    /**
+     * Mobile link hover effects
+     */
+    .nav-item a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+    }
+
+    .nav-item a::after {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+ACCESSIBILITY & PERFORMANCE
+   ========================================================================== */
+
+/**
+ * Reduced motion support for users with motion preferences
+ */
+@media (prefers-reduced-motion: reduce) {
+
+    nav,
+    .nav-item a,
+    .logo-icon,
+    .hamburger-line,
+    .nav-menu {
+        transition-duration: 0.1s;
+    }
+
+    .logo:hover .logo-icon {
+        transform: scale(1);
+    }
+}
+
+/**
+ * High contrast mode support
+ */
+@media (prefers-contrast: high) {
+    .nav-item a {
+        font-weight: 600;
+    }
+
+    .hamburger-line {
+        height: 3px;
+    }
+}
+
+/**
+ * Large screen enhancements
+ */
+@media screen and (min-width: 1440px) {
+    .nav-container {
+        max-width: 1400px;
+    }
+
+    .nav-menu {
+        gap: 3.5rem;
+    }
+}

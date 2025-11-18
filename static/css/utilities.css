@@ -1,0 +1,233 @@
+/* ============================================= */
+/*               ANIMATIONS                      */
+/* ============================================= */
+
+/**
+ * Animations optimized for performance on mobile devices
+ * Using transform and opacity for smooth animations
+ * Reduced complexity for better performance
+ */
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0;
+    }
+    to { 
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from { 
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from { 
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from { 
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes zoomIn {
+    from { 
+        transform: scale(0.95); 
+        opacity: 0; 
+    }
+    to { 
+        transform: scale(1); 
+        opacity: 1; 
+    }
+}
+
+@keyframes pulse {
+    0% { 
+        transform: scale(0.95);
+        opacity: 0.8; 
+    }
+    50% { 
+        transform: scale(1.05);
+        opacity: 1; 
+    }
+    100% { 
+        transform: scale(0.95);
+        opacity: 0.8; 
+    }
+}
+
+@keyframes pulseGrow {
+    0% { 
+        transform: scale(1); 
+    }
+    50% { 
+        transform: scale(1.1); 
+    }
+    100% { 
+        transform: scale(1); 
+    }
+}
+
+@keyframes spin {
+    to { 
+        transform: rotate(360deg); 
+    }
+}
+
+/* Animation classes */
+.animate {
+    animation-duration: 0.6s;
+    animation-fill-mode: both;
+}
+
+.animate--fast {
+    animation-duration: 0.3s;
+}
+
+.animate--slow {
+    animation-duration: 1s;
+}
+
+.fade-in {
+    animation-name: fadeIn;
+}
+
+.fade-in-up {
+    animation-name: fadeInUp;
+}
+
+.fade-in-down {
+    animation-name: fadeInDown;
+}
+
+.fade-in-left {
+    animation-name: fadeInLeft;
+}
+
+.fade-in-right {
+    animation-name: fadeInRight;
+}
+
+.zoom-in {
+    animation-name: zoomIn;
+}
+
+.pulse {
+    animation-name: pulse;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+}
+
+.pulse-grow {
+    animation-name: pulseGrow;
+    animation-iteration-count: infinite;
+    animation-duration: 1.5s;
+}
+
+.spin {
+    animation-name: spin;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-duration: 1.5s;
+}
+
+/* Will-change for performance optimization */
+.animate,
+.animate--fast,
+.animate--slow {
+    will-change: transform, opacity;
+}
+
+/* ============================================= */
+/*               RESPONSIVE ADJUSTMENTS          */
+/* ============================================= */
+
+@media (max-width: 768px) {
+    /* Reduce animation intensity on mobile */
+    .animate {
+        animation-duration: 0.4s;
+    }
+    
+    .animate--fast {
+        animation-duration: 0.2s;
+    }
+    
+    .animate--slow {
+        animation-duration: 0.8s;
+    }
+    
+    /* Disable some animations on mobile if needed */
+    .pulse,
+    .pulse-grow,
+    .spin {
+        animation: none;
+    }
+    
+    /* Contact form adjustments */
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Typography adjustments */
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further reduce animations on very small devices */
+    .animate {
+        animation-duration: 0.3s;
+    }
+    
+    /* Simplify entrance animations */
+    .fade-in-up,
+    .fade-in-down,
+    .fade-in-left,
+    .fade-in-right {
+        animation-name: fadeIn;
+    }
+    
+    /* Section title adjustments */
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .section-title::after {
+        width: 40px;
+        height: 2px;
+        margin-top: 0.5rem;
+    }
+}

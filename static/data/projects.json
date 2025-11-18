@@ -1,0 +1,62 @@
+{
+  "projects": [
+    {
+      "category": "mobile",
+      "code_snippet": "import SwiftUI\nimport Firebase\nimport UserNotifications\n\nclass AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {\n    func application(_ application: UIApplication,\n        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {\n        \n        FirebaseApp.configure()\n        \n        let notificationCenter = UNUserNotificationCenter.current()\n        notificationCenter.delegate = self\n        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }\n        application.registerForRemoteNotifications()\n        \n        return true\n    }\n}\n\n@main\nstruct GestorDeHorariosApp: App {\n    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate\n    @StateObject var authVM = AuthenticationViewModel()\n\n    var body: some Scene {\n        WindowGroup {\n            if authVM.user != nil {\n                ContentView(authenticationViewModel: authVM)\n            } else {\n                LaunchScreenView(authenticationViewModel: authVM)\n            }\n        }\n    }\n}\n",
+      "demo_url": "",
+      "description": "I created an iOS app that streamlines workforce scheduling and management. Built with Swift, it uses Firebase for secure email authentication and a powerful database to keep everything organized.\n\nUsers can manage employees, assign work hours, schedule vacations, and generate PDF reports to share with contacts quickly and efficiently. This app boosts productivity and helps businesses stay in control of their team schedules with ease.",
+      "featured": false,
+      "github_url": "https://github.com/japhdev/App-Gestor-de-horarios.git",
+      "id": 1761547431448,
+      "image": "images/projects/a0029d15f0524279be6ed5d332b533ab_Diseno_sin_titulo_8.jpg",
+      "technologies": [
+        "Swift",
+        "SwiftUI",
+        "Firebase Authentication",
+        "Database integration",
+        "PDF generation and sharing"
+      ],
+      "title": "Shift Manager"
+    },
+    {
+      "id": 1762373298938,
+      "title": "Market Basket Analisis",
+      "description": "Python Pandas is a powerful open-source data analysis and manipulation library that provides flexible data structures for working with structured data efficiently.",
+      "technologies": [
+        "Python",
+        "pandas",
+        "SQLite",
+        "Power BI",
+        "ETL",
+        "Data Visualization",
+        "Google Colab"
+      ],
+      "code_snippet": "# Agrupar los productos por id_pedido con lambda\ndf_agrupado = df_cesta.groupby('id_pedido')['nombre_producto'].apply(lambda producto: ','.join(producto))\ndf_agrupado\n\n'''\n2da opcion de agrupar los productor por id_pedido\n\nPaso 1: definir la función que une productos con coma\n\ndef unir_productos(producto):\n    return ','.join(producto)\n\nPaso 2: agrupar y aplicar esa función\ndf_agrupado = df_cesta.groupby('id_pedido')['nombre_producto'].apply(unir_productos)\n\nMostrar resultado\ndf_agrupado\n\n'''",
+      "demo_url": "",
+      "github_url": "https://github.com/japhdev/MarketBasketAnalusis.git",
+      "category": "backend",
+      "featured": false,
+      "image": "images/projects/9dac8e849b0b421c89772f029d1cb653_Diseno_sin_titulo_9.jpg"
+    },
+    {
+      "id": 1762373298938,
+      "title": "Market Basket Analisis",
+      "description": "Python Pandas is a powerful open-source data analysis and manipulation library that provides flexible data structures for working with structured data efficiently.",
+      "technologies": [
+        "Python",
+        "pandas",
+        "SQLite",
+        "Power BI",
+        "ETL",
+        "Data Visualization",
+        "Google Colab"
+      ],
+      "code_snippet": "# Agrupar los productos por id_pedido con lambda\ndf_agrupado = df_cesta.groupby('id_pedido')['nombre_producto'].apply(lambda producto: ','.join(producto))\ndf_agrupado\n\n'''\n2da opcion de agrupar los productor por id_pedido\n\nPaso 1: definir la función que une productos con coma\n\ndef unir_productos(producto):\n    return ','.join(producto)\n\nPaso 2: agrupar y aplicar esa función\ndf_agrupado = df_cesta.groupby('id_pedido')['nombre_producto'].apply(unir_productos)\n\nMostrar resultado\ndf_agrupado\n\n'''",
+      "demo_url": "",
+      "github_url": "https://github.com/japhdev/MarketBasketAnalusis.git",
+      "category": "backend",
+      "featured": false,
+      "image": "images/projects/9dac8e849b0b421c89772f029d1cb653_Diseno_sin_titulo_9.jpg"
+    }
+  ]
+}

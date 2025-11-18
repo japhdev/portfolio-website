@@ -1,0 +1,535 @@
+.hero-section {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 2rem;
+}
+
+.hero-text {
+    flex: 1;
+    text-align: center;
+    order: 2;
+}
+
+.hero-image-container {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    order: 1;
+    position: relative;
+}
+
+.profile-photo {
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 15px;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.image-label {
+    position: absolute;
+    background: linear-gradient(135deg, #09e1fee7 0%, #50c706ae 100%);
+    color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 6px 10px;
+    box-shadow: 0 5px 35px rgb(120, 3, 245);
+    font-family: 'Inter', sans-serif;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    font-size: 0.75rem;
+    display: none;
+    white-space: nowrap;
+    z-index: 2;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-label {
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bid-label {
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.label-name {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.label-username {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.2;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+}
+
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    margin: 10% auto;
+    padding: 2px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    color: #f9f9f9;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.close-modal:hover {
+    color: #7a827c;
+    transition: all 0.7s ease;
+}
+
+.pdf-container {
+    margin: 0;
+    border: 2px solid #040404;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 80vh;
+}
+
+.pdf-iframe {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 20px;
+    padding: 0 15px;
+}
+
+.download-btn, .close-btn {
+    margin: 10px 0;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #09d5fef3 0%, #6d06c7 100%);
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.download-btn:hover, .close-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 18px rgba(5, 160, 216, 0.877);
+}
+
+.cv-preview-btn {
+    margin: 20px auto;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #09d5fef3 0%, #6d06c7 100%);
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cv-preview-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 18px rgba(5, 160, 216, 0.877);
+}
+
+.about-me-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4
+    rem;
+    color: rgb(242, 247, 245);
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(10px);
+    
+}
+
+.about-me-content {
+    flex: 1;
+    width: 100%;
+    padding: 0 3rem;
+}
+
+.highlight {
+    color: #1e18d18f;
+    font-weight: 700;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #6915c3 0%, #0c7da3 100%);
+    color: rgb(0, 0, 0);
+    padding: 1.2rem 1.5rem;
+    position: relative;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(112, 33, 202, 0.5);
+    font-family: 'Inter', sans-serif;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(10px);
+    
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.experience-badge {
+    position: absolute;
+    top: -12px;
+    right: 15px;
+    background: rgba(235, 230, 230, 0.488);
+    padding: 0.4rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    box-shadow: 0 5px 40px rgba(33, 194, 202, 0.2);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.intro-text {
+    color: rgba(235, 230, 230, 0.7);
+    line-height: 1.6;
+    text-align: justify;
+    font-size: 1rem;
+}
+
+.skills-section h4 {
+    color: #fcfdff;
+    margin-bottom: 1.2rem;
+    font-size: 1.3rem;
+    position: relative;
+    display: inline-block;
+}
+
+.skills-section h4::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 40px;
+    height: 4px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #11f63fb9 0%, #04e6ff 100%);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: linear-gradient(135deg, #b7b1b1b9 0%, #8604ff 100%);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 40px rgba(180, 18, 234, 0.5);
+}
+
+.skill-item:hover {
+    box-shadow: 0 5px 40px rgba(10, 189, 238, 0.7);
+    transform: translate3d(0, -5px, 0);
+}
+
+.skill-icon {
+    color: #fefeff;
+    font-size: 1rem;
+}
+
+.personal-info {
+    background: linear-gradient(135deg, #15b7c3 0%, #5905ce 100%);
+    padding: 1.2rem;
+    border-radius: 8px;
+    margin-top: 1.2rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.6rem;
+    color: #eaf0f6;
+    font-size: 0.9rem;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-item i {
+    color: #f7f9f7;
+    width: 18px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2rem;
+    background: linear-gradient(135deg, #0c7da3 0%, #6915c3 100%);
+    border-radius: 15px;
+    box-shadow: 0 5px 40px rgba(180, 18, 234, 0.5);
+}
+
+.social-mini {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.social-mini a {
+    color: rgba(235, 230, 230, 0.7);
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.social-mini a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+@media (min-width: 576px) {
+    .hero-section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .modal-actions {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .download-btn, .close-btn {
+        width: auto;
+        margin: 10px;
+        flex: 1;
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+
+@media (min-width: 768px) {
+    .hero-content {
+        flex-direction: row;
+        text-align: left;
+        max-width: 700px;
+        gap: 3rem;
+    }
+    
+    .hero-text {
+        order: 1;
+        text-align: left;
+    }
+    
+    .hero-image-container {
+        order: 2;
+        padding-left: 0;
+        margin-top: 0;
+        justify-content: center;
+    }
+    
+    .profile-photo {
+        width: 300px;
+        height: 450px;
+        margin-top: 220px;
+    }
+    
+    .image-label {
+        display: block;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .user-label {
+        top: 220px;
+        left: calc(50% + 90px);
+        transform: translateX(-50%);
+    }
+    
+    .bid-label {
+        bottom: 530px;
+        left: calc(50% + 200px);
+        transform: translateX(-50%);
+    }
+    
+    .about-me-container {
+        flex-direction: row;
+
+    }
+    
+    .modal-content {
+        margin: auto;
+        width: 70%;
+    }
+
+    .cv-preview-btn {
+        margin: 20px 0;
+        max-width: 300px;
+    }
+}
+
+@media (min-width: 992px) {
+    .hero-section {
+        padding: 4rem 2rem;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+    }
+    
+    .hero-image-container {
+        max-width: 450px;
+        padding-left: 0;
+    }
+    
+    .profile-photo {
+        width: 350px;
+        height: 500px;
+    }
+    
+    .image-label {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+    }
+    
+    .user-label {
+        left: calc(50% + 160px);
+    }
+    
+    .bid-label {
+        left: calc(50% + 200px);
+    }
+    
+    .modal-content {
+        width: 60%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .profile-photo {
+        width: 400px;
+        height: 600px;
+    }
+    
+    .user-label {
+        left: calc(50% + 110px);
+        top: 100px;
+    }
+    
+    .bid-label {
+        left: calc(50% + 230px);
+        bottom: 480px;
+    }
+    
+    .modal-content {
+        width: 50%;
+    }
+}
+
+@media (max-width: 767px) {
+    .profile-photo {
+        display: none;
+    }
+    
+    .hero-image-container {
+        display: none;
+    }
+    
+    .hero-text {
+        order: 1;
+        text-align: center;
+    }
+    
+    .hero-content {
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+    
+    .image-label {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .pdf-iframe {
+        height: 300px;
+    }
+}
