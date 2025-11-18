@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <!-- 
     ============================================
     PORTFOLIO JAPH - Main HTML Template
@@ -9,7 +9,6 @@
     @last-updated: 2025-11-05
     ============================================
 -->
-
 
 <head>
     <!-- Meta Tags -->
@@ -78,6 +77,7 @@
                 <!-- Navigation Links -->
                 <ul class="nav-menu">
                     <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#projects" class="nav-link">Project</a></li>
                     <li class="nav-item"><a href="#design" class="nav-link">Design</a></li>
                     <li class="nav-item"><a href="#certificates" class="nav-link">Certificates</a></li>
                     <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
@@ -108,7 +108,7 @@
                     <h3>My Curriculum Vitae</h3>
                     <div class="pdf-container">
                         <iframe loading="lazy" src="{{ url_for('static', filename='docs/cv.pdf') }}#toolbar=0"
-                            width="100%" height="500px"
+                            width="100%" height="100%"
                             title="PDF Document - Josue Alan Pablo Hernandez Curriculum Vitae" class="pdf-iframe"
                             allowfullscreen>
 
@@ -285,7 +285,7 @@
             <!-- Search Box - Filter projects by text-->
             <div class="projects-search">
                 <input type="text" id="project-search"
-                    placeholder="🔍 Buscar proyectos por título, tecnología, categoría..." class="search-input">
+                    placeholder="🔍 Search project by title, technologies, category..." class="search-input">
             </div>
 
             <!-- Grid Masonry - Dynamic project cards container -->
@@ -337,9 +337,9 @@
                         </div>
 
                         <!-- Interactive hot spots for feature explanations -->
-                        <div class="design-hotspots">
-                            <div class="hotspot" data-tooltip="Interactive system.">
-                                <div class="pulse-effect"></div>
+                        <div class="hotspot-container">
+                            <div class="hotspot-point" data-tooltip="Interactive system.">
+                                <div class="hotspot-pulse"></div>
                             </div>
                         </div>
                     </div>

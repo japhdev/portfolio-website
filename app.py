@@ -48,7 +48,7 @@ if not os.path.exists(UPLOAD_FOLDER):
 
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -279,4 +279,8 @@ def check_auth():
 
 if __name__ == "__main__":
     init_db()
-    app.run(debug=os.getenv('FLASK_DEBUG', 'False').lower() in ('true', '1', 't'))
+    app.run(
+        host='0.0.0.0',
+        port=5000,
+        debug=os.getenv('FLASK_DEBUG', 'False').lower() in ('true', '1', 't') #✅ CRITICAL: Disable in production
+        )

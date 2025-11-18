@@ -14,6 +14,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+    align-items: center;
 }
 
 .design-content {
@@ -117,8 +118,8 @@
     position: absolute;
     top: 7%;
     left: 7%;
-    width: 100%;
-    height: 100%;
+    width: 10%;
+    height: 10%;
     pointer-events: none;
     display: none;
 }

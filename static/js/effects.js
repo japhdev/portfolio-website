@@ -1,6 +1,9 @@
-/* ============================================= */
-/*               CERTIFICATES CAROUSEL           */
-/* ============================================= */
+/** 
+ * Effects Script
+ * @author JAPH
+ * @version 1.0.0
+ * @description Handles carousel scrolling, Figma embed effects, and technology tooltips
+ */
 
 document.addEventListener('DOMContentLoaded', function() {
     initCarousel();
@@ -28,9 +31,9 @@ function initCarousel() {
     });
 }
 
-  /* ============================================= */
-  /*               FIGMA EMBED EFFECTS             */
-  /* ============================================= */
+/**
+ * Initializes Figma embed effects including initial animation and scroll-based transformations.
+ */
 function initFigmaEffects() {
     const figmaContainer = document.querySelector('.figma-embed-wrapper');
     if (!figmaContainer) return;
@@ -45,7 +48,7 @@ function initFigmaEffects() {
         figmaContainer.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)';
     }, 300);
     
-    // Scroll effect
+    // Scroll-based rotation effect
     window.addEventListener('scroll', () => {
         const scrollPosition = window.scrollY;
       const rotation = scrollPosition * 0.05;

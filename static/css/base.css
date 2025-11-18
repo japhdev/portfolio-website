@@ -16,13 +16,13 @@
     --primary: #e9e6ef;
     --secondary: #767275;
     --link: #f3e9e9;
-    --hover-link: #00e0ff;
+    --hover-link: #656565;
     --card-bg: #fffcfc;
     --modal-bg: rgba(202, 14, 14, 0.85);
     --highlight: #ff0055;
     
     /* Dark Theme Colors */
-    --primary-accent: #6e44ff;
+    --primary-accent: #70ff4400;
     --secondary-accent: #ff4d7e;
     --dark-bg: #0f0e17;
     --darker-bg: #0a0a12;
@@ -123,7 +123,7 @@ h1, h2, h3, h4 {
     font-weight: 600;
     font-family: 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.2;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 h1 {
@@ -159,7 +159,7 @@ h1 {
 p {
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.6;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0rem;
     font-size: 1rem;
     font-family: 'Inter', sans-serif;
     padding: 0 1rem;

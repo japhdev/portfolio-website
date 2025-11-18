@@ -1,7 +1,3 @@
-/* ============================================= */
-/*               HERO SECTION                    */
-/* ============================================= */
-
 .hero-section {
     padding: 2rem 1rem;
     max-width: 1200px;
@@ -44,37 +40,34 @@
     z-index: 1;
 }
 
-/* Image labels - Estilo más delgado y sobrepuesto */
 .image-label {
     position: absolute;
-    background: linear-gradient(135deg, #09e1fee7 0%, #50c706ae 100%) !important;
+    background: linear-gradient(135deg, #09e1fee7 0%, #50c706ae 100%);
     color: rgba(255, 255, 255, 0.9);
     border-radius: 8px;
     padding: 6px 10px;
     box-shadow: 0 5px 35px rgb(120, 3, 245);
     font-family: 'Inter', sans-serif;
-    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(10px);
+    
     font-size: 0.75rem;
     display: none;
     white-space: nowrap;
     z-index: 2;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    max-width: 80%;
 }
 
 .user-label {
     top: 15px;
     left: 50%;
     transform: translateX(-50%);
-    width: auto;
 }
 
 .bid-label {
     bottom: 80px;
     left: 50%;
     transform: translateX(-50%);
-    width: auto;
 }
 
 .label-name {
@@ -89,10 +82,6 @@
     line-height: 1.2;
 }
 
-/* ============================================= */
-/*               MODAL STYLES                    */
-/* ============================================= */
-
 .modal {
     display: none;
     position: fixed;
@@ -102,15 +91,16 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px); 
-    overflow: auto;
+    
 }
 
 .modal-content {
     background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px); 
+    
     margin: 10% auto;
     padding: 2px;
     border-radius: 15px;
@@ -123,7 +113,7 @@
 .close-modal {
     position: absolute;
     right: 15px;
-    top: 10px;
+    top: 0px;
     color: #f9f9f9;
     font-size: 28px;
     font-weight: bold;
@@ -137,11 +127,17 @@
 }
 
 .pdf-container {
-    margin: 15px 0;
+    margin: 0;
     border: 2px solid #040404;
-    border-radius: 15px;
+    border-radius: 10px;
     overflow: hidden;
-    height: 70vh;
+    height: 80vh;
+}
+
+.pdf-iframe {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .modal-actions {
@@ -152,11 +148,10 @@
     padding: 0 15px;
 }
 
-/* Button styles */
 .download-btn, .close-btn {
     margin: 10px 0;
     padding: 12px 20px;
-    background: linear-gradient(135deg, #09d5fef3 0%, #6d06c7 100%) !important;
+    background: linear-gradient(135deg, #09d5fef3 0%, #6d06c7 100%);
     border-radius: 10px;
     border: none;
     color: white;
@@ -170,13 +165,12 @@
 .download-btn:hover, .close-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 18px rgba(5, 160, 216, 0.877);
-    color: white;
 }
 
 .cv-preview-btn {
     margin: 20px auto;
     padding: 12px 20px;
-    background: linear-gradient(135deg, #09d5fef3 0%, #6d06c7 100%) !important;
+    background: linear-gradient(135deg, #09d5fef3 0%, #6d06c7 100%);
     border-radius: 10px;
     border: none;
     color: white;
@@ -194,29 +188,26 @@
     box-shadow: 0 4px 18px rgba(5, 160, 216, 0.877);
 }
 
-/* ============================================= */
-/*               ABOUT ME SECTION                */
-/* ============================================= */
-
 .about-me-container {
     position: relative;
     max-width: 1200px;
     margin: 1rem auto;
-    padding: 0.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 4
+    rem;
     color: rgb(242, 247, 245);
     border-radius: 12px;
     font-family: 'Inter', sans-serif;
-    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(10px);
+    
 }
 
 .about-me-content {
     flex: 1;
     width: 100%;
-    padding: 0 1rem;
+    padding: 0 3rem;
 }
 
 .highlight {
@@ -232,8 +223,9 @@
     border-radius: 15px;
     box-shadow: 0 10px 40px rgba(112, 33, 202, 0.5);
     font-family: 'Inter', sans-serif;
-    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(10px);
+    
 }
 
 .card-header h3 {
@@ -251,7 +243,6 @@
     font-size: 0.7rem;
     font-weight: 600;
     box-shadow: 0 5px 40px rgba(33, 194, 202, 0.2);
-    font-family: 'Inter', sans-serif;
 }
 
 .card-body {
@@ -261,7 +252,7 @@
 .intro-text {
     color: rgba(235, 230, 230, 0.7);
     line-height: 1.6;
-    margin-bottom: 1.5rem;
+    text-align: justify;
     font-size: 1rem;
 }
 
@@ -300,7 +291,6 @@
     border-radius: 8px;
     transition: all 0.3s ease;
     box-shadow: 0 5px 40px rgba(180, 18, 234, 0.5);
-    font-family: 'Inter', sans-serif;
 }
 
 .skill-item:hover {
@@ -348,7 +338,6 @@
     background: linear-gradient(135deg, #0c7da3 0%, #6915c3 100%);
     border-radius: 15px;
     box-shadow: 0 5px 40px rgba(180, 18, 234, 0.5);
-    font-family: 'Inter', sans-serif;
 }
 
 .social-mini {
@@ -375,10 +364,6 @@
     background: rgba(255, 255, 255, 0.2);
     transform: translateY(-3px);
 }
-
-/* ============================================= */
-/*               RESPONSIVE DESIGN               */
-/* ============================================= */
 
 @media (min-width: 576px) {
     .hero-section {
@@ -424,6 +409,7 @@
     .profile-photo {
         width: 300px;
         height: 450px;
+        margin-top: 220px;
     }
     
     .image-label {
@@ -446,11 +432,11 @@
     
     .about-me-container {
         flex-direction: row;
-        padding: 1rem 5%;
+
     }
     
     .modal-content {
-        margin: 5% auto;
+        margin: auto;
         width: 70%;
     }
 
@@ -492,10 +478,6 @@
         left: calc(50% + 200px);
     }
     
-    .about-me-container {
-        padding: 2rem 8%;
-    }
-    
     .modal-content {
         width: 60%;
     }
@@ -519,5 +501,35 @@
     
     .modal-content {
         width: 50%;
+    }
+}
+
+@media (max-width: 767px) {
+    .profile-photo {
+        display: none;
+    }
+    
+    .hero-image-container {
+        display: none;
+    }
+    
+    .hero-text {
+        order: 1;
+        text-align: center;
+    }
+    
+    .hero-content {
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+    
+    .image-label {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .pdf-iframe {
+        height: 300px;
     }
 }

@@ -1,6 +1,9 @@
-/* ============================================= */
-/*               CONTACT FORM VALIDATION         */
-/* ============================================= */
+/**
+ * Contact Form Submission Script
+* @author JAPH
+* @version 1.0.0
+* @description Handles contact form submission with validation, feedback messages, and error handling
+ */
 
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contact-form');
@@ -10,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+/**
+* Handles form submission
+ */
 async function handleFormSubmit(e) {
     e.preventDefault();
     
