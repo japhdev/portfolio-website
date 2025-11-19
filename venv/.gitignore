@@ -1,0 +1,48 @@
+# ----- Entornos Virtuales -----
+venv/
+ENV/
+env/
+.env*/
+
+# ----- Variables de Entorno -----
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+
+# ----- Python -----
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+.python-version
+
+# ----- Bases de Datos -----
+messages.db*
+*.sqlite*
+message_backups/
+message_backups/*.db
+
+# ----- IDEs/Editores -----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ----- Sistema -----
+.DS_Store
+Thumbs.db
+
+# ----- Logs/Caché -----
+*.log
+*.cache
+*.pid
+
+# ----- Build/Dist -----
+build/
+dist/
+*.egg-info/
+*.egg
