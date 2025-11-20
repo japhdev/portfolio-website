@@ -146,91 +146,99 @@
 
                         <!--Card body with intro, skills and personal info -->
                         <div class="card-body">
-                            <p class="intro-text">
-                                Passionate about continuous learning and problem-solving. Currently building my career
-                                as a Software Development Engineer, eager to grow through new challenges and contribute
-                                with efficient, practical solutions in dynamic and improvement-driven environments.
-                            </p>
+                            <div class="intro-with-image">
+                                <p class="intro-text">
+                                    Passionate about continuous learning and problem-solving. Currently building my
+                                    career
+                                    as a Software Development Engineer, eager to grow through new challenges and
+                                    contribute
+                                    with efficient, practical solutions in dynamic and improvement-driven environments.
+                                </p>
 
-                            <!-- Skills and competencies grid-->
-                            <div class="skills-section">
-                                <h4>Core Competencies</h4>
-                                <div class="skills-grid">
-                                    <div class="skill-item">
-                                        <i class="fas fa-code skill-icon"></i>
-                                        <span>Software Developer</span>
+                                <img src="{{ url_for ('static', filename='images/Constancia-AcademiaGlobal.jpg') }}"
+                                    alt="Constancia" class="constancia-img">
+                                </div>
+
+
+                                <!-- Skills and competencies grid-->
+                                <div class="skills-section">
+                                    <h4>Core Competencies</h4>
+                                    <div class="skills-grid">
+                                        <div class="skill-item">
+                                            <i class="fas fa-code skill-icon"></i>
+                                            <span>Software Developer</span>
+                                        </div>
+                                        <div class="skill-item">
+                                            <i class="fas fa-mobile-alt skill-icon"></i>
+                                            <span>Mobile App Developer (iOS)</span>
+                                        </div>
+                                        <div class="skill-item">
+                                            <i class="fas fa-database skill-icon"></i>
+                                            <span>Database Architecture</span>
+                                        </div>
+                                        <div class="skill-item">
+                                            <i class="fas fa-paint-brush skill-icon"></i>
+                                            <span>UI/UX Design</span>
+                                        </div>
                                     </div>
-                                    <div class="skill-item">
-                                        <i class="fas fa-mobile-alt skill-icon"></i>
-                                        <span>Mobile App Developer (iOS)</span>
+                                </div>
+
+                                <!-- Personal information items -->
+                                <div class="personal-info">
+                                    <div class="info-item">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>Software Development Engineering Graduate</span>
                                     </div>
-                                    <div class="skill-item">
-                                        <i class="fas fa-database skill-icon"></i>
-                                        <span>Database Architecture</span>
+                                    <div class="info-item">
+                                        <i class="fas fa-language"></i>
+                                        <span>Spanish (Native)</span>
                                     </div>
-                                    <div class="skill-item">
-                                        <i class="fas fa-paint-brush skill-icon"></i>
-                                        <span>UI/UX Design</span>
+                                    <div class="info-item">
+                                        <i class="fas fa-heart"></i>
+                                        <span>Programming enthusiast</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Personal information items -->
-                            <div class="personal-info">
-                                <div class="info-item">
-                                    <i class="fas fa-graduation-cap"></i>
-                                    <span>Software Development Engineering Graduate</span>
-                                </div>
-                                <div class="info-item">
-                                    <i class="fas fa-language"></i>
-                                    <span>Spanish (Native)</span>
-                                </div>
-                                <div class="info-item">
-                                    <i class="fas fa-heart"></i>
-                                    <span>Programming enthusiast</span>
+                            <!--Card footer with social media links-->
+                            <div class="card-footer">
+                                <div class="social-mini">
+                                    <a href="https://github.com/japhdev" aria-label="GitHub" target="_blank"
+                                        rel="noopener noreferrer">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/josue-alan-pablo-hernandez-0938a5299"
+                                        aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!--Card footer with social media links-->
-                        <div class="card-footer">
-                            <div class="social-mini">
-                                <a href="https://github.com/japhdev" aria-label="GitHub" target="_blank"
-                                    rel="noopener noreferrer">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="https://www.linkedin.com/in/josue-alan-pablo-hernandez-0938a5299"
-                                    aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </div>
+                    <!-- Hero Image with Labels -->
+                    <div class="hero-image-container">
+
+                        <!-- Profile Photo -->
+                        <img src="{{ url_for('static', filename='images/my-photo.png') }}" alt="JAPH Profile Photo"
+                            class="profile-photo">
+
+                        <!--GitHub label - GitHub username display -->
+                        <div class="image-label bid-label">
+                            <div class="label-title">GitHub</div>
+                            <div class="label-value">#japhdev</div>
+                        </div>
+
+                        <!-- User info label - Full name and user name-->
+                        <div class="image-label user-label">
+                            <div class="label-name">Josue Alan Pablo Hernández</div>
+                            <div class="label-username">@JAPH</div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Hero Image with Labels -->
-                <div class="hero-image-container">
-
-                    <!-- Profile Photo -->
-                    <img src="{{ url_for('static', filename='images/my-photo.png') }}" alt="JAPH Profile Photo"
-                        class="profile-photo">
-
-                    <!--GitHub label - GitHub username display -->
-                    <div class="image-label bid-label">
-                        <div class="label-title">GitHub</div>
-                        <div class="label-value">#japhdev</div>
-                    </div>
-
-                    <!-- User info label - Full name and user name-->
-                    <div class="image-label user-label">
-                        <div class="label-name">Josue Alan Pablo Hernández</div>
-                        <div class="label-username">@JAPH</div>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <!-- Section of Technologies -->
@@ -390,6 +398,14 @@
             <div class="certificates-container">
                 <div class="certificates-scroller">
                     <div class="cert-slide">
+                        <img src="{{ url_for('static', filename='images/CERTIFICATE_LANDING_PAGE~IRJTHYZ0ZS9I.jpg') }}" alt="Certificate 1"
+                            loading="lazy" class="cert-clickable">
+                    </div>
+                    <div class="cert-slide">
+                        <img src="{{ url_for('static', filename='images/certificado5.jpg') }}" alt="Certificate 5"
+                            loading="lazy" class="cert-clickable">
+                    </div>
+                    <div class="cert-slide">
                         <img src="{{ url_for('static', filename='images/certificado1.jpg') }}" alt="Certificate 1"
                             loading="lazy" class="cert-clickable">
                     </div>
@@ -405,10 +421,7 @@
                         <img src="{{ url_for('static', filename='images/certificado4.jpg') }}" alt="Certificate 4"
                             loading="lazy" class="cert-clickable">
                     </div>
-                    <div class="cert-slide">
-                        <img src="{{ url_for('static', filename='images/certificado5.jpg') }}" alt="Certificate 5"
-                            loading="lazy" class="cert-clickable">
-                    </div>
+                    
                 </div>
 
                 <!-- Buttons for scrolling -->
